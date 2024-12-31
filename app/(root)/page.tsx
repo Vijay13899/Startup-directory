@@ -8,22 +8,11 @@ export default async function Home({searchParams}:{
 }) {
     const query = (await searchParams).query;
     const params = {search:query || null};
-    const {data:posts} = await sanityFetch({query:STARTUPS_QUERY,params})    // const posts = [
-    //     {
-    //         _createdAt: new Date(),
-    //         _id:1,
-    //         views: 55,
-    //         author: {_id:1,name:"Vijay"},
-    //         description:"Description",
-    //         image:"https://images.unsplash.com/photo-1525338078858-d762b5e32f2c?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    //         category:"Robots",
-    //         title:"We Robots"
-    //     }
-    // ]
+    const {data:posts} = await sanityFetch({query:STARTUPS_QUERY,params})
   return (
     <>
       <section className="pink_container">
-          <h1 className="heading">INNOVATORS HUB</h1>
+          <h1 className="heading">INNOVATORS HUB <br/> Startup directory </h1>
           <h3 className="sub-heading !max-w-3xl">
               Pitch your startup, <br/>
               Get new Ideas!
