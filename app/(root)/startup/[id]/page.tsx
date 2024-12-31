@@ -1,11 +1,11 @@
-import { Suspense } from "react";
+import {Suspense} from "react";
 import { client } from "@/sanity/lib/client";
 import {
     PLAYLIST_BY_SLUG_QUERY,
     STARTUP_BY_ID_QUERY,
 } from "@/sanity/lib/queries";
 import { notFound } from "next/navigation";
-import { formatDate } from "@/lib/utils";
+import {formatDate} from "@/lib/utils";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -21,15 +21,15 @@ export const experimental_ppr = true;
 const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
     const id = (await params).id;
 
-    const [post, { select: editorPosts }] = await Promise.all([
-        client.fetch(STARTUP_BY_ID_QUERY, { id }),
+    const [post, editorResponse] = await Promise.all([
+        client.fetch(STARTUP_BY_ID_QUERY, { id }).catch(()=>null),
         client.fetch(PLAYLIST_BY_SLUG_QUERY, {
             slug: "editor-picks-new",
         }),
     ]);
 
     if (!post) return notFound();
-
+    const editorPosts = editorResponse?.select || []
     const parsedContent = md.render(post?.pitch || "");
 
     return (
@@ -42,7 +42,7 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
             </section>
 
             <section className="section_container">
-                <img
+            <img
                     src={post.image}
                     alt="thumbnail"
                     className="w-full h-auto rounded-xl"
@@ -69,7 +69,6 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
                                 </p>
                             </div>
                         </Link>
-
                         <p className="category-tag">{post.category}</p>
                     </div>
 
@@ -91,13 +90,12 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
                         <p className="text-30-semibold">Editor Picks</p>
 
                         <ul className="mt-7 card_grid-sm">
-                            {editorPosts.map((post: StartupTypeCard, i: number) => (
+                            {editorPosts.map((post: StartupCardType, i: number) => (
                                 <StartupCard key={i} post={post} />
                             ))}
                         </ul>
                     </div>
                 )}
-
                 <Suspense fallback={<Skeleton className="view_skeleton" />}>
                     <View id={id} />
                 </Suspense>

@@ -16,11 +16,11 @@
   }
 
   .text-30-extrabold {
-    @apply text-[30px] font-extrabold text-white;
+    @apply text-[30px] font-extrabold text-gray-100 tracking-wide;
   }
 
   .text-30-bold {
-    @apply text-[30px] font-bold text-black;
+    @apply text-[30px] font-bold text-teal-700;
   }
 
   .text-30-semibold {
@@ -28,7 +28,7 @@
   }
 
   .text-26-semibold {
-    @apply font-semibold text-[26px] text-black;
+    @apply font-semibold text-[26px] text-gray-700;
   }
 
   .text-24-black {
@@ -46,21 +46,33 @@
   .text-14-normal {
     @apply font-normal text-sm text-white-100/80;
   }
-
-  .pink_container {
-    @apply w-full bg-primary min-h-[530px] pattern flex justify-center items-center flex-col py-10 px-6;
+  .pattern {
+    background-image: linear-gradient(
+            to right,
+            transparent 49.5%,
+            rgba(72, 187, 191, 0.2) 49.5%,
+            rgba(72, 187, 191, 0.6) 50.5%,
+            transparent 50.5%
+    );
+    background-size: 5% 100%;
+    background-position: center;
+    background-repeat: repeat-x;
   }
+  .pink_container {
+    @apply w-full bg-gradient-to-r from-teal-500 to-purple-500 min-h-[530px] flex justify-center items-center flex-col py-10 px-6;
+  }
+
 
   .tag {
     @apply bg-secondary px-6 py-3 font-work-sans font-bold rounded-sm uppercase relative tag-tri;
   }
 
   .heading {
-    @apply uppercase bg-black px-6 py-3 font-work-sans font-extrabold text-white sm:text-[54px] sm:leading-[64px] text-[36px] leading-[46px] max-w-5xl text-center my-5;
+    @apply uppercase bg-blue-700 px-6 py-3 font-work-sans font-extrabold text-gray-50 sm:text-[54px] sm:leading-[64px] text-[36px] leading-[46px] max-w-5xl text-center my-5;
   }
 
   .sub-heading {
-    @apply font-medium text-[20px] text-white max-w-2xl text-center break-words;
+    @apply font-medium text-[20px] text-black-200 max-w-2xl text-center break-words;
   }
 
   .section_container {
@@ -68,7 +80,7 @@
   }
 
   .card_grid {
-    @apply grid md:grid-cols-3 sm:grid-cols-2 gap-5;
+    @apply grid md:grid-cols-3 sm:grid-cols-2 gap-8;
   }
 
   .card_grid-sm {
@@ -85,7 +97,7 @@
   }
 
   .profile_card {
-    @apply w-80 px-6 pb-6 pt-20 flex flex-col justify-center items-center bg-primary border-[5px] border-black shadow-100 rounded-[30px] relative z-0 h-fit max-lg:w-full;
+    @apply w-80 px-6 pb-6 pt-20 flex flex-col justify-center items-center bg-gradient-to-b from-teal-200 to-teal-400 border-[4px] border-teal-600 shadow-xl rounded-[30px] relative z-0 h-fit max-lg:w-full;
   }
 
   .profile_title {
@@ -98,7 +110,7 @@
 
   /* idea details */
   .divider {
-    @apply border-dotted bg-zinc-400 max-w-4xl my-10 mx-auto;
+    @apply border-dotted bg-gray-300 h-[2px] max-w-4xl my-10 mx-auto;
   }
 
   .view_skeleton {
@@ -107,11 +119,11 @@
 
   /* navbar */
   .avatar {
-    @apply p-0 focus-visible:ring-0 bg-none rounded-full drop-shadow-md !important;
+    @apply p-0 focus-visible:ring-0 bg-gradient-to-b from-teal-500 to-purple-500 rounded-full drop-shadow-lg !important;
   }
 
   .dropdown-menu {
-    @apply w-56 border-[5px] border-black bg-white p-5 rounded-2xl !important;
+    @apply w-56 border-[3px] border-purple-500 bg-gradient-to-r from-teal-100 to-purple-100 p-5 rounded-2xl shadow-md !important;
   }
 
   .login {
@@ -128,12 +140,13 @@
   }
 
   .search-btn {
-    @apply size-[50px] rounded-full bg-black flex justify-center items-center !important;
+    @apply size-[50px] rounded-full bg-gradient-to-r from-purple-500 to-teal-500 flex justify-center items-center shadow-lg hover:shadow-xl hover:from-teal-500 hover:to-purple-500 !important;
   }
 
   /* startupcard */
+
   .startup-card {
-    @apply bg-white border-[5px] border-black py-6 px-5 rounded-[22px] shadow-200 hover:border-primary transition-all duration-500 hover:shadow-300 hover:bg-primary-100;
+    @apply bg-gradient-to-b from-purple-200 to-purple-400 border-[4px] border-purple-500 py-6 px-5 rounded-[22px] shadow-md hover:border-teal-500 transition-all duration-500 hover:shadow-lg hover:bg-gradient-to-b hover:from-purple-500 hover:to-purple-300;
   }
 
   .startup-card_date {
@@ -149,11 +162,11 @@
   }
 
   .startup-card_btn {
-    @apply rounded-full bg-black-200 font-medium text-[16px] text-white px-5 py-3 !important;
+    @apply rounded-full bg-blue-700 font-medium text-[16px] text-white px-5 py-3 !important;
   }
 
   .startup-card_skeleton {
-    @apply w-full h-96 rounded-[22px] bg-zinc-400;
+    @apply w-full h-96 rounded-[22px] bg-gray-300 animate-pulse;
   }
 
   /* startupform */
@@ -166,11 +179,11 @@
   }
 
   .startup-form_input {
-    @apply border-[3px] border-black px-5 py-7 text-[18px] text-black font-semibold rounded-full mt-3 placeholder:text-black-300 !important;
+    @apply border-[3px] border-teal-400 px-5 py-7 text-[18px] text-gray-800 font-semibold rounded-full mt-3 placeholder:text-teal-300 !important;
   }
 
   .startup-form_textarea {
-    @apply border-[3px] border-black p-5 text-[18px] text-black font-semibold rounded-[20px] mt-3 placeholder:text-black-300 !important;
+    @apply border-[3px] border-purple-400 p-5 text-[18px] text-gray-800 font-semibold rounded-[20px] mt-3 placeholder:text-purple-300 !important;
   }
 
   .startup-form_error {
@@ -182,7 +195,7 @@
   }
 
   .startup-form_btn {
-    @apply bg-primary border-[4px] border-black rounded-full p-5 min-h-[70px] w-full font-bold text-[18px] !important;
+    @apply bg-gradient-to-r from-teal-400 to-purple-400 border-[4px] border-black rounded-full p-5 min-h-[70px] w-full font-bold text-[18px] text-gray-100 shadow-lg hover:bg-gradient-to-l hover:from-purple-400 hover:to-teal-400 transition-all duration-300 !important;
   }
 
   /* view */
@@ -196,19 +209,6 @@
 
   .category-tag {
     @apply font-medium text-[16px] bg-primary-100 px-4 py-2 rounded-full;
-  }
-
-  .pattern {
-    background-image: linear-gradient(
-            to right,
-            transparent 49.5%,
-            rgba(251, 232, 67, 0.2) 49.5%,
-            rgba(251, 232, 67, 0.6) 50.5%,
-            transparent 50.5%
-    );
-    background-size: 5% 100%;
-    background-position: center;
-    background-repeat: repeat-x;
   }
 
   .tag-tri {
