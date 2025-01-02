@@ -6,7 +6,7 @@ import { Textarea } from "@/components/ui/textarea";
 import MDEditor from "@uiw/react-md-editor";
 import { Button } from "@/components/ui/button";
 import { Send } from "lucide-react";
-// import { formSchema } from "@/lib/validation";
+import { formSchema } from "@/lib/validation";
 import { z } from "zod";
 import { useToast } from "@/hooks/use-toast";
 import { useRouter } from "next/navigation";
@@ -17,18 +17,18 @@ const StartupForm = () => {
     const [pitch, setPitch] = useState("");
     const { toast } = useToast();
     const router = useRouter();
-
     const handleFormSubmit = async (prevState: any, formData: FormData) => {
-        try {
-            // const formValues = {
-            //     title: formData.get("title") as string,
-            //     description: formData.get("description") as string,
-            //     category: formData.get("category") as string,
-            //     link: formData.get("link") as string,
-            //     pitch,
-            // };
 
-            // await formSchema.parseAsync(formValues);
+        try {
+            const formValues = {
+                title: formData.get("title") as string,
+                description: formData.get("description") as string,
+                category: formData.get("category") as string,
+                link: formData.get("link") as string,
+                pitch,
+            };
+
+            await formSchema.parseAsync(formValues);
 
             const result = await createPitch(prevState, formData, pitch);
 
@@ -44,9 +44,9 @@ const StartupForm = () => {
             return result;
         } catch (error) {
             if (error instanceof z.ZodError) {
-                const fieldErorrs = error.flatten().fieldErrors;
+                const fieldErrors = error.flatten().fieldErrors;
 
-                setErrors(fieldErorrs as unknown as Record<string, string>);
+                setErrors(fieldErrors as unknown as Record<string, string>);
 
                 toast({
                     title: "Error",
